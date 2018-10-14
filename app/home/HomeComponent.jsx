@@ -1,17 +1,32 @@
 import React, { Component } from 'react';
-import Sidebar from '../common/Sidebar/Sidebar.jsx';
+import PropTypes from 'prop-types';
+import Sidebar from '../common/Sidebar/Sidebar';
 // import Header from "../common/Header/Header";
 // import Footer from "../common/Footer/Footer";
-// import Sidebar from "../common/Sidebar/Sidebar";
 import { AppWrapper } from '../common/Layout/Layout';
+import Contents from './Contents';
 
-export default class Home extends Component {
-    changeTab = (tabName) => this.props.tabChange(tabName)
-    render() {
-        return(
-            <AppWrapper>
-                <Sidebar activeTab={this.props.ui.activeTab} changeTab={this.changeTab}  />
-            </AppWrapper>
-        ) 
-    }
+class Home extends Component {
+  changeTab = tabName => {
+    const { tabChange } = this.props;
+    tabChange(tabName);
+  };
+
+  render() {
+    const {
+      ui: { activeTab }
+    } = this.props;
+    return (
+      <AppWrapper>
+        <Sidebar activeTab={activeTab} changeTab={this.changeTab} />
+        <Contents {...this.props} />
+      </AppWrapper>
+    );
+  }
 }
+
+Home.propTypes = {
+  ui: PropTypes.string.isRequired,
+  tabChange: PropTypes.func.isRequired
+};
+export default Home;
