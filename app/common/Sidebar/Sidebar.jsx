@@ -51,12 +51,7 @@ const allTabs = [
 function AppNav({ activeTab, changeTab }) {
   const marginTopValue = setMarginValue(activeTab);
   const allTabsComponent = allTabs.map(tab => (
-    <Tab
-      key={tab.name}
-      to={tab.route}
-      replace
-      onClick={() => changeTab(tab.name)}
-    >
+    <Tab key={tab.name} to={tab.route} onClick={() => changeTab(tab.name)}>
       <Icon id={tab.name} className={tab.icon} />
     </Tab>
   ));
