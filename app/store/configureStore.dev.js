@@ -1,13 +1,13 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import { createHashHistory } from 'history';
-import { routerMiddleware, routerActions } from 'react-router-redux';
+import { routerMiddleware } from 'react-router-redux';
 import { createLogger } from 'redux-logger';
 import rootReducer from './reducers';
+import { homeMiddleware } from '../home/duck';
 
 const history = createHashHistory();
-
-const configureStore = (initialState) => {
+const configureStore = initialState => {
   // Redux Configuration
   const middleware = [];
   const enhancers = [];
@@ -30,6 +30,8 @@ const configureStore = (initialState) => {
   const router = routerMiddleware(history);
   middleware.push(router);
 
+  // add home middlware
+  middleware.push(homeMiddleware);
   // If Redux DevTools Extension is installed use it, otherwise use Redux compose
   /* eslint-disable no-underscore-dangle */
   const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__

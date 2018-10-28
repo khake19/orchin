@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Sidebar from '../common/Sidebar/Sidebar';
-// import Header from "../common/Header/Header";
-// import Footer from "../common/Footer/Footer";
-import { AppWrapper } from '../common/Layout/Layout';
+import { AppWrapper, AppMainContent } from '../common/Layout/Layout';
 import Contents from './Contents';
 
 class Home extends Component {
@@ -19,14 +17,15 @@ class Home extends Component {
     return (
       <AppWrapper>
         <Sidebar activeTab={activeTab} changeTab={this.changeTab} />
-        <Contents {...this.props} />
+        <AppMainContent>
+          <Contents {...this.props} />
+        </AppMainContent>
       </AppWrapper>
     );
   }
 }
 
 Home.propTypes = {
-  ui: PropTypes.string.isRequired,
   tabChange: PropTypes.func.isRequired
 };
 export default Home;
