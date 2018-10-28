@@ -26,7 +26,6 @@ class Home extends Component {
 }
 
 Home.propTypes = {
-  // ui: PropTypes.shape({ activeTab: PropTypes.string }),
   tabChange: PropTypes.func.isRequired
 };
 export default Home;
