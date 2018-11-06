@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Field, withFormik } from 'formik';
+import { Field, withFormik, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { Part, Section, Row, Fields } from './UserStyle';
 import Button, { ButtonsGroup } from '../common/Button/Button';
@@ -25,7 +25,7 @@ const formikEnhancer = withFormik({
 });
 
 const UserForm = props => {
-  const { touched, errors, handleSubmit } = props;
+  const { handleSubmit } = props;
 
   return (
     <Section>
@@ -37,27 +37,21 @@ const UserForm = props => {
                 First Name *
               </label>
               <Field type="text" name="firstName" placeholder="first name" />
-              {errors.firstName && touched.firstName ? (
-                <ErrorLabel>{errors.firstName}</ErrorLabel>
-              ) : null}
+              <ErrorMessage component={ErrorLabel} name="firstName" />
             </Fields>
             <Fields>
               <label className="itemLabel" htmlFor="middleName">
                 Middle Name*
               </label>
               <Field type="text" name="middleName" placeholder="middle name" />
-              {errors.middleName && touched.middleName ? (
-                <ErrorLabel>{errors.middleName}</ErrorLabel>
-              ) : null}
+              <ErrorMessage component={ErrorLabel} name="firstName" />
             </Fields>
             <Fields>
               <label className="itemLabel" htmlFor="lastName">
                 Last Name *
               </label>
               <Field type="text" name="lastName" placeholder="last name" />
-              {errors.lastName && touched.lastName ? (
-                <ErrorLabel>{errors.lastName}</ErrorLabel>
-              ) : null}
+              <ErrorMessage component={ErrorLabel} name="lastName" />
             </Fields>
           </Row>
           <Row>
@@ -66,9 +60,7 @@ const UserForm = props => {
                 Address *
               </label>
               <Field type="text" name="address" placeholder="address" />
-              {errors.address && touched.address ? (
-                <ErrorLabel>{errors.address}</ErrorLabel>
-              ) : null}
+              <ErrorMessage component={ErrorLabel} name="address" />
             </Fields>
           </Row>
           <Row>
@@ -77,9 +69,7 @@ const UserForm = props => {
                 Age *
               </label>
               <Field type="number" name="age" placeholder="age" />
-              {errors.age && touched.age ? (
-                <ErrorLabel>{errors.age}</ErrorLabel>
-              ) : null}
+              <ErrorMessage component={ErrorLabel} name="age" />
             </Fields>
             <Fields>
               <label className="itemLabel" htmlFor="gender">
@@ -106,14 +96,7 @@ const UserForm = props => {
 };
 
 UserForm.propTypes = {
-  touched: PropTypes.shape({}),
-  errors: PropTypes.shape({}),
   handleSubmit: PropTypes.func.isRequired
-};
-
-UserForm.defaultProps = {
-  touched: {},
-  errors: {}
 };
 
 const enhanceForm = formikEnhancer(UserForm);
