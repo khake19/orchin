@@ -20,7 +20,6 @@ const onSubmit = values => console.log('hello there', values);
 
 const formikEnhancer = withFormik({
   validationSchema: UserSchema,
-  initialValues: { email: '' },
   handleSubmit: onSubmit
 });
 
@@ -44,7 +43,7 @@ const UserForm = props => {
                 Middle Name*
               </label>
               <Field type="text" name="middleName" placeholder="middle name" />
-              <ErrorMessage component={ErrorLabel} name="firstName" />
+              <ErrorMessage component={ErrorLabel} name="middleName" />
             </Fields>
             <Fields>
               <label className="itemLabel" htmlFor="lastName">
