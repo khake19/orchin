@@ -1,5 +1,5 @@
 .itemLabel {
-  font-weight: 600;
+  font-weight: 500;
   font-size: 12px;
   margin-bottom: 20px;
   text-transform: uppercase;
@@ -24,8 +24,8 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  color: #B4B7BA;
+  color: #b4b7ba;
   cursor: move;
   margin-right: 10px;
-  height: 36px
+  height: 36px;
 }
