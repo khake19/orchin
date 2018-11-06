@@ -20,11 +20,18 @@ const onSubmit = values => console.log('hello there', values);
 
 const formikEnhancer = withFormik({
   validationSchema: UserSchema,
+  mapPropsToValues: () => ({
+    firstName: '',
+    middleName: '',
+    lastName: '',
+    address: '',
+    age: ''
+  }),
   handleSubmit: onSubmit
 });
 
 const UserForm = props => {
-  const { handleSubmit } = props;
+  const { handleSubmit, handleReset, isSubmitting } = props;
 
   return (
     <Section>
@@ -81,10 +88,10 @@ const UserForm = props => {
             </Fields>
           </Row>
           <ButtonsGroup>
-            <Button type="submit" success>
+            <Button type="submit" success disabled={isSubmitting}>
               Submit
             </Button>
-            <Button type="button" danger>
+            <Button type="button" danger onClick={handleReset}>
               Clear
             </Button>
           </ButtonsGroup>
@@ -95,7 +102,9 @@ const UserForm = props => {
 };
 
 UserForm.propTypes = {
-  handleSubmit: PropTypes.func.isRequired
+  handleSubmit: PropTypes.func.isRequired,
+  handleReset: PropTypes.func.isRequired,
+  isSubmitting: PropTypes.bool.isRequired
 };
 
 const enhanceForm = formikEnhancer(UserForm);
