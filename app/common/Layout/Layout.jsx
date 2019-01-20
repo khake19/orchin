@@ -1,5 +1,6 @@
 // Libraries
 import React from 'react';
+import PropTypes from 'prop-types';
 
 // Styles
 import styled from 'styled-components';
@@ -49,8 +50,12 @@ const PageHeaderActionsStyle = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: flex-end;
-  button {  margin-left: 10px; }
-  i { margin-right: 10px; }
+  button {
+    margin-left: 10px;
+  }
+  i {
+    margin-right: 10px;
+  }
 `;
 
 const PageContentStyle = styled.div`
@@ -74,41 +79,71 @@ const PageFooterStyle = styled.div`
   border-top: 1px solid rgba(0, 0, 0, 0.1);
 `;
 
+const ErrorLabelStyle = styled.span`
+  font-size: 11px;
+  font-weight: 600;
+  margin: 0;
+  letter-spacing: -0.5px;
+  color: red;
+`;
+
 // Components
-const AppWrapper = props => <AppWrapperStyle>{props.children}</AppWrapperStyle>;
-
-const AppMainContent = props => (
-  <AppMainContentStyle>{props.children}</AppMainContentStyle>
+const AppWrapper = ({ children }) => (
+  <AppWrapperStyle>{children}</AppWrapperStyle>
 );
+AppWrapper.propTypes = { children: PropTypes.shape().isRequired };
 
-const PageWrapper = props => (
-  <PageWrapperStyle>{props.children}</PageWrapperStyle>
+const AppMainContent = ({ children }) => (
+  <AppMainContentStyle>{children}</AppMainContentStyle>
 );
+AppMainContent.propTypes = { children: PropTypes.shape().isRequired };
 
-const PageHeader = props => <PageHeaderStyle>{props.children}</PageHeaderStyle>;
-
-const PageHeaderTitle = props => (
-  <PageHeaderTitleStyle>{props.children}</PageHeaderTitleStyle>
+const ErrorLabel = ({ children }) => (
+  <ErrorLabelStyle>{children}</ErrorLabelStyle>
 );
+ErrorLabel.propTypes = { children: PropTypes.shape().isRequired };
 
-const PageHeaderActions = props => (
-  <PageHeaderActionsStyle>{props.children}</PageHeaderActionsStyle>
+const PageWrapper = ({ children }) => (
+  <PageWrapperStyle>{children}</PageWrapperStyle>
 );
+PageWrapper.propTypes = { children: PropTypes.shape().isRequired };
 
-const PageContent = props => (
-  <PageContentStyle bare={props.bare}>{props.children}</PageContentStyle>
+const PageHeader = ({ children }) => (
+  <PageHeaderStyle>{children}</PageHeaderStyle>
 );
+PageHeader.propTypes = { children: PropTypes.shape().isRequired };
 
-const PageFooter = props => <PageFooterStyle>{props.children}</PageFooterStyle>;
+const PageHeaderTitle = ({ children }) => (
+  <PageHeaderTitleStyle>{children}</PageHeaderTitleStyle>
+);
+PageHeaderTitle.propTypes = { children: PropTypes.shape().isRequired };
+
+const PageHeaderActions = ({ children }) => (
+  <PageHeaderActionsStyle>{children}</PageHeaderActionsStyle>
+);
+PageHeaderActions.propTypes = { children: PropTypes.shape().isRequired };
+
+const PageContent = ({ children, bare }) => (
+  <PageContentStyle bare={bare}>{children}</PageContentStyle>
+);
+PageContent.propTypes = {
+  children: PropTypes.shape().isRequired,
+  bare: PropTypes.bool.isRequired
+};
+
+const PageFooter = ({ children }) => (
+  <PageFooterStyle>{children}</PageFooterStyle>
+);
+PageFooter.propTypes = { children: PropTypes.shape().isRequired };
 
 export {
   AppWrapper,
   AppMainContent,
+  ErrorLabel,
   PageWrapper,
   PageHeader,
   PageHeaderTitle,
   PageHeaderActions,
   PageContent,
-  PageFooter,
+  PageFooter
 };
-
