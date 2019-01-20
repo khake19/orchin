@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import UserForm from './UserForm';
 import Header from '../common/Header/Header';
-import { PageWrapper } from '../common/Layout/Layout';
+import { PageWrapper, PageContent } from '../common/Layout/Layout';
 
 class UserComponent extends Component {
   render() {
     return (
       <PageWrapper>
         <Header title="user" />
-        <UserForm />
+        <PageContent>
+          <UserForm />
+        </PageContent>
       </PageWrapper>
     );
   }
