@@ -1,5 +1,5 @@
-const UI_TAB_CHANGE = 'app/home/UI_TAB_CHANGE'; 
+const UI_TAB_CHANGE = 'app/home/UI_TAB_CHANGE';
 
 export default {
-    UI_TAB_CHANGE
-}
+  UI_TAB_CHANGE
+};

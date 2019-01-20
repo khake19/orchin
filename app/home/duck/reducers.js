@@ -1,21 +1,22 @@
-import types from './types';
-import { combineReducers } from 'redux'; 
+import { combineReducers } from 'redux';
 import { handleActions } from 'redux-actions';
+import types from './types';
 
 const initialState = {
-    activeTab: 'form'
-}
+  activeTab: 'form'
+};
 
 const uiReducer = handleActions(
-    {
-        [types.UI_TAB_CHANGE]: (state, action) => {
-           return { ...state, activeTab: action.payload }
-         }
-    },
-    initialState
-)
+  {
+    [types.UI_TAB_CHANGE]: (state, action) => ({
+      ...state,
+      activeTab: action.payload
+    })
+  },
+  initialState
+);
 
 const reducer = combineReducers({
-    ui: uiReducer
-})
+  ui: uiReducer
+});
 export default reducer;
