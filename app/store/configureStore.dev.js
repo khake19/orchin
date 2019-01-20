@@ -5,8 +5,14 @@ import { routerMiddleware } from 'react-router-redux';
 import { createLogger } from 'redux-logger';
 import rootReducer from './reducers';
 import { homeMiddleware } from '../home/duck';
+import promiseMiddleware from '../middlewares/promiseMiddleware';
 
 const history = createHashHistory();
+
+const reduxListener = (dispatch, getState) => {
+  console.log('redux listener', getState());
+};
+
 const configureStore = initialState => {
   // Redux Configuration
   const middleware = [];
@@ -32,6 +38,7 @@ const configureStore = initialState => {
 
   // add home middlware
   middleware.push(homeMiddleware);
+  middleware.push(promiseMiddleware);
   // If Redux DevTools Extension is installed use it, otherwise use Redux compose
   /* eslint-disable no-underscore-dangle */
   const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
@@ -55,6 +62,7 @@ const configureStore = initialState => {
     );
   }
 
+  reduxListener(store.dispatch, store.getState);
   return store;
 };
 

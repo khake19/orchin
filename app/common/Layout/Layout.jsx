@@ -1,3 +1,8 @@
+// Libraries
+import React from 'react';
+import PropTypes from 'prop-types';
+
+// Styles
 import styled from 'styled-components';
 
 const ErrorLabel = styled.div`
@@ -46,12 +51,11 @@ const PageFooter = styled.div`
   background: #f9fafa;
   border-top: 1px solid rgba(0, 0, 0, 0.1);
 `;
-
 export {
   AppWrapper,
   AppMainContent,
+  ErrorLabel,
   PageWrapper,
   PageContent,
-  PageFooter,
-  ErrorLabel
+  PageFooter
 };

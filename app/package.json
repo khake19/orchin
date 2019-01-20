@@ -16,6 +16,8 @@
   "license": "MIT",
   "dependencies": {
     "pouchdb": "^7.0.0",
-    "pouchdb-adapter-node-websql": "^7.0.0"
+    "pouchdb-adapter-node-websql": "^7.0.0",
+    "pouchdb-find": "^7.0.0",
+    "relational-pouch": "^3.1.0"
   }
 }

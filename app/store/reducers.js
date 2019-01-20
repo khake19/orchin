@@ -1,11 +1,12 @@
-import  { combineReducers } from 'redux';
+import { combineReducers } from 'redux';
 import { routerReducer as router } from 'react-router-redux';
 import homeReducer from '../home/duck';
+import userReducer from '../users/duck';
 
-//list of reducers
 const rootReducer = combineReducers({
-   home: homeReducer,
-   router
-})
+  home: homeReducer,
+  user: userReducer,
+  router
+});
 
 export default rootReducer;
