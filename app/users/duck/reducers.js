@@ -7,15 +7,16 @@ const initialState = {
 
 const employeeReducer = handleActions(
   {
-    [types.ADD_EMPLOYEE]: state => ({ ...state, loading: true }),
-    [types.ADD_EMPLOYEE_SUCCESS]: (state, action) => ({
+    [types.ADD_EMPLOYEE]: state => ({ ...state, loading: true, saved: false }),
+    [types.ADD_EMPLOYEE_SUCCESS]: state => ({
       ...state,
       loading: false,
-      employee: action.employee.users[0]
+      saved: true
     }),
     [types.ADD_EMPLOYEE_FAILURE]: (state, action) => ({
       ...state,
       loading: false,
+      saved: false,
       error: action.error
     }),
     [types.GET_EMPLOYEES]: state => ({

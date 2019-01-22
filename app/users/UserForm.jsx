@@ -16,8 +16,10 @@ const UserSchema = Yup.object().shape({
     .required('age is required')
 });
 
-const onSubmit = values => console.log('hello there', values);
-
+const handleSubmit = (values, { props, resetForm }) => {
+  props.addEmployee(values);
+  resetForm({});
+};
 const formikEnhancer = withFormik({
   validationSchema: UserSchema,
   mapPropsToValues: () => ({
@@ -27,11 +29,11 @@ const formikEnhancer = withFormik({
     address: '',
     age: ''
   }),
-  handleSubmit: onSubmit
+  handleSubmit
 });
 
 const UserForm = props => {
-  const { handleSubmit, handleReset, isSubmitting } = props;
+  const { handleReset, isSubmitting } = props;
 
   return (
     <Section>
@@ -102,7 +104,6 @@ const UserForm = props => {
 };
 
 UserForm.propTypes = {
-  handleSubmit: PropTypes.func.isRequired,
   handleReset: PropTypes.func.isRequired,
   isSubmitting: PropTypes.bool.isRequired
 };

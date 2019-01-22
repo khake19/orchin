@@ -9,7 +9,7 @@ class UserComponent extends Component {
       <PageWrapper>
         <Header title="user" />
         <PageContent>
-          <UserForm />
+          <UserForm {...this.props} />
         </PageContent>
       </PageWrapper>
     );
