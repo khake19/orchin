@@ -16,7 +16,7 @@ const UserSchema = Yup.object().shape({
     .required('age is required')
 });
 
-const handleSubmit = (values, { props, resetForm }) => {
+const onSubmit = (values, { props, resetForm }) => {
   props.addEmployee(values);
   resetForm({});
 };
@@ -29,12 +29,11 @@ const formikEnhancer = withFormik({
     address: '',
     age: ''
   }),
-  handleSubmit
+  handleSubmit: onSubmit
 });
 
 const UserForm = props => {
-  const { handleReset, isSubmitting } = props;
-
+  const { handleSubmit, handleReset, isSubmitting, values } = props;
   return (
     <Section>
       <form onSubmit={handleSubmit}>
@@ -44,21 +43,36 @@ const UserForm = props => {
               <label className="itemLabel" htmlFor="firstName">
                 First Name *
               </label>
-              <Field type="text" name="firstName" placeholder="first name" />
+              <Field
+                type="text"
+                name="firstName"
+                placeholder="first name"
+                value={values.firstName || ''}
+              />
               <ErrorMessage component={ErrorLabel} name="firstName" />
             </Fields>
             <Fields>
               <label className="itemLabel" htmlFor="middleName">
                 Middle Name*
               </label>
-              <Field type="text" name="middleName" placeholder="middle name" />
+              <Field
+                type="text"
+                name="middleName"
+                placeholder="middle name"
+                value={values.middleName || ''}
+              />
               <ErrorMessage component={ErrorLabel} name="middleName" />
             </Fields>
             <Fields>
               <label className="itemLabel" htmlFor="lastName">
                 Last Name *
               </label>
-              <Field type="text" name="lastName" placeholder="last name" />
+              <Field
+                type="text"
+                name="lastName"
+                placeholder="last name"
+                value={values.lastName || ''}
+              />
               <ErrorMessage component={ErrorLabel} name="lastName" />
             </Fields>
           </Row>
@@ -67,7 +81,12 @@ const UserForm = props => {
               <label className="itemLabel" htmlFor="address">
                 Address *
               </label>
-              <Field type="text" name="address" placeholder="address" />
+              <Field
+                type="text"
+                name="address"
+                placeholder="address"
+                value={values.address || ''}
+              />
               <ErrorMessage component={ErrorLabel} name="address" />
             </Fields>
           </Row>
@@ -76,16 +95,26 @@ const UserForm = props => {
               <label className="itemLabel" htmlFor="age">
                 Age *
               </label>
-              <Field type="number" name="age" placeholder="age" />
+              <Field
+                type="number"
+                name="age"
+                placeholder="age"
+                value={values.age || ''}
+              />
               <ErrorMessage component={ErrorLabel} name="age" />
             </Fields>
             <Fields>
               <label className="itemLabel" htmlFor="gender">
                 Gender *
               </label>
-              <Field component="select" name="gender">
-                <option value="male">Male</option>
-                <option value="female">Female</option>
+              <Field
+                component="select"
+                name="gender"
+                placeholder="gender"
+                value={values.gender || ''}
+              >
+                <option value="MALE">Male</option>
+                <option value="FEMALE">Female</option>
               </Field>
             </Fields>
           </Row>
@@ -104,8 +133,10 @@ const UserForm = props => {
 };
 
 UserForm.propTypes = {
+  handleSubmit: PropTypes.func.isRequired,
   handleReset: PropTypes.func.isRequired,
-  isSubmitting: PropTypes.bool.isRequired
+  isSubmitting: PropTypes.bool.isRequired,
+  values: PropTypes.shape().isRequired
 };
 
 const enhanceForm = formikEnhancer(UserForm);
