@@ -2,27 +2,33 @@ import { handleActions } from 'redux-actions';
 import types from './types';
 
 const initialState = {
-  employees: []
+  employees: {
+    result: []
+  }
 };
 
 const employeeReducer = handleActions(
   {
-    [types.ADD_EMPLOYEE]: state => ({ ...state, loading: true }),
-    [types.ADD_EMPLOYEE_SUCCESS]: (state, action) => ({
+    [types.ADD_EMPLOYEE]: state => ({ ...state, loading: true, saved: false }),
+    [types.ADD_EMPLOYEE_SUCCESS]: state => ({
       ...state,
       loading: false,
-      employee: action.employee.users[0]
+      saved: true
     }),
     [types.ADD_EMPLOYEE_FAILURE]: (state, action) => ({
       ...state,
       loading: false,
+      saved: false,
       error: action.error
     }),
-    [types.GET_EMPLOYEES]: state => ({
-      ...state,
-      fetching: true,
-      fetched: false
-    }),
+    [types.GET_EMPLOYEES]: state => {
+      console.log('state', state);
+      return {
+        ...state,
+        fetching: true,
+        fetched: false
+      };
+    },
     [types.GET_EMPLOYEES_SUCCESS]: (state, action) => ({
       ...state,
       fetching: false,
